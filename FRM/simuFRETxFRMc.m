@@ -114,9 +114,10 @@ while( sum(aRecord) + sum(dRecord) < totPhotons )
     xpos=xpos+D*tstep*F+sqrt(tstep*2*kbT*D)*randn;
     iter=iter+1;
     %xsave(iter,:)=[t,xpos];
+
 end
 
-%iter
+% Run the Maximum Information Method to get estimate of trajecotry from FRET.
 %xsave=xsave(1:iter-1,:);
 Fdata=struct;
 Fdata.Xsave=xsave;
@@ -158,7 +159,7 @@ for tf=1:Times
     nd=sum(iTad(tb:tf) == 1);
     na=sum(iTad(tb:tf) == 0);
     dt=Tad(tf)-start;
-    
+
     if( na == 0 || nd == 0)
         continue
     end
