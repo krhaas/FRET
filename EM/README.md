@@ -1,3 +1,4 @@
+# EM
 To run the Expectation-Maximization optimization of the free energy sufrace and diffusion constant 
 
 ## Setup
