@@ -7,7 +7,6 @@ kbT=1;
 D=500;
 totPhotons=100000;
 alpha=0.1;
-%dA=linspace(0.7,1.3,Nruns);
 
 Ta=zeros(totPhotons,1);
 Td=zeros(totPhotons,1);
@@ -16,9 +15,6 @@ aRecord=0;
 dRecord=0;
 
 xref=linspace(0,2,500);
-%V1=fretV(xref);
-%V1=2000*(1-xref).^4-200*(1-xref).^2+2*(1-xref);
-%pxref=exp(-V1/kbT)/sum(exp(-V1/kbT));
 [V,F,Vpp,Fpp] = fretV(xref);
 
 cumPxref=cumtrapz(xref,exp(-V));
@@ -26,23 +22,11 @@ cumPxref=cumPxref/cumPxref(end);
 xpos=xref(find(cumPxref>rand,1));
 
 
-%Time by 10
-%parameters
-%res=100;
-
+%smFRET experimental parameters
 Id0 = 8000*res;
 Ia0 = 15000*res;
 Bd = 10*res;
 Ba = 20*res;
-
-%{
-Old Parameters
-Id0=4900*res;
-Ia0=4900*res;
-Bd=50*res;
-Ba=50*res;
-%}
-
 
 beta_a=(Ia0+Ba)/Ba;
 beta_d=(Id0+Bd)/Bd;
@@ -64,11 +48,6 @@ FRETcumd=0;
 iter=1;
 xsave=zeros(totPhotons,2);
 while( sum(aRecord) + sum(dRecord) < totPhotons )
-    
-    %[V,F]=fretV(xpos);
-    %[D,dD]=fretD(xpos);
-    %D=500; dD=0;
-    %F=F+dD/D;
     
     F = ppval(Fpp,xpos);
     
