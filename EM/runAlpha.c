@@ -83,16 +83,3 @@ void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         
     }
 }
-
-/*dgemv(chn, &Nv, &Nv, &one, PA, &Nv, atemp, &ione, &zero, tempA, &ione);
-dgemv(chn, &Nv, &Nv, &one, PA, &Nv, atemp, &ione, &zero, tempA, &ione);
-dgemm(chn, chn, &Nv, &Nv, &Nv, &one, PA, &Nv, PD, &Nv, &zero, Bnorm, &Nv);
-  */
-
-/*
-        Anorm[t] = 0;
-        for( i=0; i<Nv; i++) {
-            Anorm[t] += tempA[i]*tempA[i];
-        }
-        Anorm[t] = sqrt(Anorm[t]);
-        */
