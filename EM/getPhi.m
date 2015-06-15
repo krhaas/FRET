@@ -1,4 +1,4 @@
-function [py,gradD,dPhi,Phi,AB,LQ2out]=getPhi(Fdata,p0,CD,Chebs,pyNorm,LQ2)
+function [py,gradD,dPhi,Phi,AB]=getPhi(Fdata,p0,CD,Chebs,pyNorm)
 %Takes in FRET data and model of dynamics and returns log-loss which is
 %equal to negaitve of log-likelihood
 
@@ -65,7 +65,6 @@ end
 LQ=diag(LQ);
 %possible failures of numerical eigenvector method
 assert(sum(imag(LQ)) == 0 , 'Imaginary Eigenvalues' ) 
-LQ2out=LQ(2);
 
 %smallest to largest rearrange
 [LQ,iLQ]=sort(LQ);
@@ -102,7 +101,7 @@ Jprior=36*xref.^10./(1+xref.^6).^3.*...
 
 %Apply Dark to get diagnoalized H+Dark operator
 Kdark = diag(LQ) + ...
-    Qx'*spdiags(w0.*(Iofx-(Iofx)/LQ2.*log(Jprior)),0,N,N)*Qx;
+    Qx'*spdiags(w0.*(Iofx-(Iofx)/LQ.*log(Jprior)),0,N,N)*Qx;
 
 [Qdark,LQdark]=eig(Kdark);
 LQdark=diag(LQdark);
